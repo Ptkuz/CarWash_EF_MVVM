@@ -74,7 +74,7 @@
                 <TabItem.Header>
                     <TextBlock Text="Боксы"/>
                 </TabItem.Header>
-                <ListBox Margin="20" ItemsSource="{Binding AllBoxes}">
+                <ListBox x:Name="ViewAllBoxes" Margin="20" ItemsSource="{Binding AllBoxes}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -88,7 +88,7 @@
                 <TabItem.Header>
                     <TextBlock Text="Кузовы"/>
                 </TabItem.Header>
-                <ListBox Margin="20" ItemsSource="{Binding AllCarBody}">
+                <ListBox x:Name="ViewAllCarBody" Margin="20" ItemsSource="{Binding AllCarBody}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -113,15 +113,15 @@
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="Добавить заказ"/>
+            <Button Content="Добавить заказ" Command="{Binding OpenAddNewOrder}"/>
             <Button Content="Добавить автомобиль" Command="{Binding OpenAddNewCar}"/>
-            <Button Content="Добавить клиента"/>
+            <Button Content="Добавить клиента" Command="{Binding OpenAddNewClient}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Добавить бокс"/>
-            <Button Content="Добавить кузов"/>
-            <Button Content="Добавить услугу"/>
+            <Button Content="Добавить бокс" Command="{Binding OpenAddNewBox}"/>
+            <Button Content="Добавить кузов" Command="{Binding OpenAddNewCarBody}"/>
+            <Button Content="Добавить услугу" Command="{Binding OpenAddNewService}"/>
         </StackPanel>
     </Grid>
 </Window>

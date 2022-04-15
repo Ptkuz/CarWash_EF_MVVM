@@ -15,6 +15,7 @@ namespace CarWash_DB
         public DateTime EndDate { get; set; }
         public Guid IdBox { get; set; }
         public Box? Box { get; set; }
+        public int Discount { get; set; }
         public decimal Price { get; set; }
         public Guid IdStatus { get; set; }
         public Status? Status { get; set; }

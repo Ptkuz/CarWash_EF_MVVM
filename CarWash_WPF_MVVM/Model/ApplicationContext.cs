@@ -34,7 +34,7 @@ namespace CarWash_WPF_MVVM.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=GURREX\SQLEXPRESS;Database=CarWash;Trusted_Connection=True;TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-75JDC4V\SQLEXPRESS;Database=CarWash;Trusted_Connection=True;TrustServerCertificate=true;");
         }
     }
 }

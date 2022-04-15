@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CarWash_WPF_MVVM.ViewModel;
 
 namespace CarWash_WPF_MVVM.View
 {
@@ -22,6 +23,7 @@ namespace CarWash_WPF_MVVM.View
         public AddCar()
         {
             InitializeComponent();
+            DataContext = new DataManageVM();
         }
     }
 }

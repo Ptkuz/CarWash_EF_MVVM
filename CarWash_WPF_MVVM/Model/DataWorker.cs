@@ -131,5 +131,26 @@ namespace CarWash_WPF_MVVM.Model
             }
         
         }
+
+        public static bool AddCar(string manufacturer, string model, int year, CarBody carBody) 
+        { 
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                Car car = new Car 
+                {
+                    IdCar = Guid.NewGuid(),
+                    Manufacturer = manufacturer,
+                    Model = model,
+                    Year = year,
+                    Id_CarBody = carBody.IdCarBody
+                
+                };
+                db.Cars.Add(car);
+                db.SaveChanges();
+                result = true;
+            }
+                return result;
+        }
     }
 }

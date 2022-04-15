@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Svs4wEInVV8WJejrCNdCqUc1FskKMIVZpb4vtxQkcWsDXY1kDjQaPuolgyAwZlt6nMa6fZvHOJHOs3hgD1wybw==",
+  "dgSpecHash": "Qyg6nIb7hSsAfec5KwKJ2EIJ/CzILJfDiNbdMt41tmR3u8wc6qSS7/TArCESHoYZdJygWHfudi7LJbLb8Kb8BA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ptkuz\\source\\repos\\CarWash_WPF_MVVM\\CarWash_DB\\CarWash_DB.csproj",
+  "projectFilePath": "C:\\Users\\evtku\\source\\repos\\CarWash_EF_MVVM\\CarWash_DB\\CarWash_DB.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

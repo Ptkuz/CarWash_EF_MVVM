@@ -7,7 +7,22 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\AddBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AddCar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AddCarBody.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AddClient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AddOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AddService.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\MainWindow.xaml.cs">
@@ -15,7 +30,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\AddBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\AddCar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AddCarBody.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AddClient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AddOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AddService.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainWindow.xaml">

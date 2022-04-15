@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\
+C:\Users\evtku\source\repos\CarWash_EF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\
 CarWash_WPF_MVVM
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\App.xaml
-246008571
+C:\Users\evtku\source\repos\CarWash_EF_MVVM\CarWash_WPF_MVVM\App.xaml
+7598419631
 
-101710429191
-215-1554301254
-View\AddCar.xaml;View\MainWindow.xaml;
+15-1725358388
+215-1293232706
+View\AddBox.xaml;View\AddCar.xaml;View\AddCarBody.xaml;View\AddClient.xaml;View\AddOrder.xaml;View\AddService.xaml;View\MainWindow.xaml;
 
 True
 

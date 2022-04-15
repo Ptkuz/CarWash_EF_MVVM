@@ -22,13 +22,24 @@ namespace CarWash_WPF_MVVM.View
     public partial class MainWindow : Window
     {
         public static ListView AllCarsView;
+        public static ListView AllClientsView;
+        public static ListView AllOrdersView;
+        public static ListBox AllBoxesView;
+        public static ListBox AllCarBodyView;
+        public static ListView AllServicesView;
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new DataManageVM();
 
-            //AllCarsView = ViewAllCars;
+            AllCarsView = ViewAllCars;
+            AllClientsView = ViewAllClients;
+            AllOrdersView = ViewAllOrders;
+            AllBoxesView = ViewAllBoxes;
+            AllCarBodyView = ViewAllCarBody;
+            AllServicesView = ViewAllServices;
+
         }
     }
 }
