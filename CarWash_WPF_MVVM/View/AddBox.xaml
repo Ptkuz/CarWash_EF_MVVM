@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarWash_WPF_MVVM.View"
         mc:Ignorable="d"
-        Title="AddBox" Height="150" Width="400">
+        Title="AddBox" Height="150" Width="400" Name="AddNewBoxWnd">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -18,7 +18,7 @@
         <StackPanel Grid.Row="1">
             <TextBlock Text="Название бокса:"/>
             <TextBox Text="{Binding NameBox}"/>
-            <Button Content="Добавить бокс" Margin="0,10,0,0" Command="{Binding AddNewBox}"/>
+            <Button Content="Добавить бокс" Margin="0,10,0,0" Command="{Binding AddNewBox}" CommandParameter="{Binding ElementName=AddNewBoxWnd}"/>
         </StackPanel>
 
 

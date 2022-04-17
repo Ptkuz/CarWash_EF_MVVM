@@ -22,6 +22,8 @@ namespace CarWash_WPF_MVVM.Model
         
         }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             modelBuilder.Entity<OrderService>().HasKey(table => new
@@ -29,6 +31,15 @@ namespace CarWash_WPF_MVVM.Model
                 table.IdOrder,
                 table.IdService
             
+            });
+
+            modelBuilder.Entity<Status>().HasData(
+            new Status[]
+            {
+                new Status { IdStatus = 1, NameStatus = "Заявка зарегестрирована" },
+                new Status { IdStatus = 2, NameStatus = "Автомобиль в процессе мойки" },
+                new Status { IdStatus = 3, NameStatus = "Заявка закрыта" },
+                new Status { IdStatus = 4, NameStatus = "Отменено" },
             });
         }
 

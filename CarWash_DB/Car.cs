@@ -9,7 +9,7 @@ namespace CarWash_DB
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public int Year { get; set; }
-        public Guid Id_CarBody { get; set; }
+        public int Id_CarBody { get; set; }
         public CarBody? CarBody { get; set; } 
 
 

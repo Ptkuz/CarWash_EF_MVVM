@@ -20,10 +20,14 @@ namespace CarWash_WPF_MVVM.View
     /// </summary>
     public partial class AddOrder : Window
     {
+        //public static DataGrid DataGridServices { get; set; }
+
         public AddOrder()
         {
             InitializeComponent();
             DataContext = new DataManageVM();
+
+            //DataGridServices = dataGridServices;
         }
     }
 }

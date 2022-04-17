@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarWash_WPF_MVVM.View"
         mc:Ignorable="d"
-        Title="AddOrder" Height="550" Width="1100">
+        Title="AddOrder" Height="550" Width="1100" Name="AddNewOrder">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -19,18 +19,17 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <StackPanel Margin="0,0,10,0">
                 <TextBlock Text="Список автомобилей"/>
-                <DataGrid ItemsSource="{Binding AllCars}" AutoGenerateColumns="False" Width="350">
+                <DataGrid ItemsSource="{Binding AllCarsWithOrder}" SelectedItem="{Binding OrderCar}" AutoGenerateColumns="False" Width="350">
                     <DataGrid.Columns>
                         <DataGridTextColumn  Binding="{Binding Manufacturer}" Header="Производитель"/>
                         <DataGridTextColumn  Binding="{Binding Model}" Header="Название полное"/>
                         <DataGridTextColumn  Binding="{Binding Year}" Header="Год выпуска"/>
-                        <DataGridTextColumn  Binding="{Binding Body}" Header="Тип кузова"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
             <StackPanel Margin="0,0,10,0">
                 <TextBlock Text="Список клиентов"/>
-                <DataGrid ItemsSource="{Binding AllClients}" AutoGenerateColumns="False" Width="350">
+                <DataGrid ItemsSource="{Binding AllClients}" SelectedItem="{Binding OrderClient}" AutoGenerateColumns="False" Width="350">
                     <DataGrid.Columns>
                         <DataGridTextColumn  Binding="{Binding FIO}" Header="ФИО"/>
                         <DataGridTextColumn  Binding="{Binding CarNumber}" Header="Номер автомобиля"/>
@@ -41,9 +40,16 @@
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Список услуг"/>
-                <DataGrid ItemsSource="{Binding AllServices}" AutoGenerateColumns="False" Width="350">
+                <DataGrid x:Name="dataGridServices" ItemsSource="{Binding AllServices}" AutoGenerateColumns="False" Width="350">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn  Binding="{Binding Choise}" Header="Выбор"/>
+                        <DataGridCheckBoxColumn Binding="{Binding Choise}"  Width="50" >
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate x:Name="dtAllChkBx">
+                                    
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+                        <DataGridTextColumn  Binding="{Binding IdService}" Header="Id Услуги"/>
                         <DataGridTextColumn  Binding="{Binding NameService}" Header="Услуга"/>
                         <DataGridTextColumn  Binding="{Binding PriceService}" Header="Цена"/>
                     </DataGrid.Columns>
@@ -63,7 +69,7 @@
             <TextBox Text="{Binding Price}" IsReadOnly="True" Width="200"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Margin="0,10,0,0">
-            <Button Command="{Binding AddNewOrderWindow}" Content="Добавить" Width="200"/>
+            <Button Command="{Binding AddNewOrderWindow}" Content="Добавить" Width="200" CommandParameter="{Binding ElementName=AddNewOrder}"/>
         </StackPanel>
     </Grid>
 </Window>
