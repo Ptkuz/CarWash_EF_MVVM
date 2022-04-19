@@ -1,0 +1,30 @@
+﻿<Window x:Class="CarWash_WPF_MVVM.View.AddClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarWash_WPF_MVVM.View"
+        mc:Ignorable="d"
+        Title="Добавление нового клиента" Height="250" Width="350" Name="AddNewClientWnd">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Добавление нового клиента" FontSize="18" FontWeight="Bold" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Фамилия Имя Отчество:"/>
+            <TextBox Text="{Binding FIO}"/>
+            <TextBlock Text="Номер автомобиля:"/>
+            <TextBox Text="{Binding CarNumber}"/>
+            <TextBlock Text="Номер телефона:"/>
+            <TextBox Text="{Binding PhoneNumber}"/>
+            <TextBlock Text="Email:"/>
+            <TextBox Text="{Binding Email}"/>
+            <Button Content="Добавить клиента" Margin="0,10,0,0" Command="{Binding AddNewClient}" CommandParameter="{Binding ElementName=AddNewClientWnd}"/>
+        </StackPanel>
+    </Grid>
+</Window>

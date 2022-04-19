@@ -10,6 +10,26 @@ namespace CarWash_WPF_MVVM.Model
 {
     public static class DataWorker
     {
+
+        public static List<object> GetAllCarsWithOrder()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                List<object> cars = new List<object>();
+
+                var res = from car in db.Cars orderby car.Manufacturer select car;
+
+                foreach (var car in res)
+                    cars.Add(car);
+
+
+                return cars;
+
+            }
+
+
+        }
+
         public static List<object> GetAllCars() 
         {
             using (ApplicationContext db = new ApplicationContext()) 
@@ -21,14 +41,16 @@ namespace CarWash_WPF_MVVM.Model
                              orderby car.Manufacturer
                              select new
                              {
+                                 IdCar = car.IdCar,
                                  Manufacturer = car.Manufacturer,
                                  Model = car.Model,
                                  Year = car.Year,
                                  Body = CarBodys.NameCarBody
                              };
 
-                foreach(var car in result)
+                foreach (var car in result)
                     cars.Add(car);
+
 
                 return cars;
             
@@ -130,6 +152,124 @@ namespace CarWash_WPF_MVVM.Model
             
             }
         
+        }
+
+        public static bool AddCar(string manufacturer, string model, int year, CarBody carBody) 
+        { 
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                Car car = new Car 
+                {
+                    IdCar = Guid.NewGuid(),
+                    Manufacturer = manufacturer,
+                    Model = model,
+                    Year = year,
+                    Id_CarBody = carBody.IdCarBody
+                
+                };
+                db.Cars.Add(car);
+                db.SaveChanges();
+                result = true;
+            }
+                return result;
+        }
+
+        public static bool AddClient(string fio, string carNumber, string phoneNumber, string email) 
+        {
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                Client client = new Client
+                {
+                    IdClient = Guid.NewGuid(),
+                    FIO = fio,
+                    CarNumber = carNumber,
+                    PhoneNumber = phoneNumber,
+                    Email = email
+                };
+                db.Clients.Add(client);
+                db.SaveChanges();
+                result=true;
+            }
+            return result;
+        
+        }
+
+        public static bool AddOrder(Car car, Client client, DateTime beginDate, DateTime endDate, Box box, int discount, decimal price)
+        {
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Order order = new Order
+                {
+                    IdOrder = Guid.NewGuid(),
+                    IdCar = car.IdCar,
+                    IdClient = client.IdClient,
+                    Dateorder = DateTime.Now,
+                    BeginDate = beginDate,
+                    EndDate = endDate,
+                    IdBox = box.IdBox,
+                    Discount = discount,
+                    Price = price,
+                    IdStatus = 1
+                };
+                db.Orders.Add(order);
+                db.SaveChanges();
+                result = true;
+            }
+            return result;
+
+        }
+
+        public static bool AddBox(string nameBox) 
+        {
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                Box box = new Box
+                {
+                    NameBox = nameBox
+                };
+                db.Boxes.Add(box);
+                db.SaveChanges();
+                result = true;
+            }
+            return result;
+        }
+
+        public static bool AddCarBody(string nameCarBody) 
+        {
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                CarBody carBody = new CarBody
+                {
+                    NameCarBody = nameCarBody
+                };
+                db.CarBodies.Add(carBody);
+                db.SaveChanges();   
+                result=true;
+            }
+            return result;
+        
+        }
+
+        public static bool AddService(string nameService, decimal priceService) 
+        {
+            bool result = false;
+            using (ApplicationContext db = new ApplicationContext()) 
+            {
+                Service service = new Service
+                {
+                    NameService = nameService,
+                    PriceService = priceService
+                };
+                db.Services.Add(service);
+                db.SaveChanges();
+                result = true;
+            }
+            return result;
         }
     }
 }
