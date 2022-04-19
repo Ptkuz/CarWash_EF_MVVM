@@ -53,7 +53,7 @@ namespace CarWash_WPF_MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CarWash_WPF_MVVM;component/view/addcar.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CarWash_WPF_MVVM;V1.0.0.0;component/view/addcar.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\AddCar.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
