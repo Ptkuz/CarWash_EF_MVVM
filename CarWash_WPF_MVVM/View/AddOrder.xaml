@@ -42,12 +42,13 @@
                 <TextBlock Text="Список услуг"/>
                 <DataGrid x:Name="dataGridServices" ItemsSource="{Binding AllServices}" AutoGenerateColumns="False" Width="350">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Binding="{Binding Choise}"  Width="50" >
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate x:Name="dtAllChkBx">
-                                    
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataGridCheckBoxColumn x:Name="CheckBoxColumn" Binding="{Binding Choise}" Header="Выбрать" >
+                            <DataGridCheckBoxColumn.CellStyle>
+                                <Style>
+                                    <EventSetter Event="CheckBox.Checked"  Handler="OnChecked"/>
+                                    <EventSetter Event="CheckBox.Unchecked" Handler="UnChecked"/>
+                                </Style>
+                            </DataGridCheckBoxColumn.CellStyle>
                         </DataGridCheckBoxColumn>
                         <DataGridTextColumn  Binding="{Binding IdService}" Header="Id Услуги"/>
                         <DataGridTextColumn  Binding="{Binding NameService}" Header="Услуга"/>
@@ -63,10 +64,8 @@
             <DatePicker SelectedDate="{Binding EndDate}"/>
             <TextBlock Text="Бокс: "/>
             <ComboBox ItemsSource="{Binding AllBoxes}" DisplayMemberPath="NameBox" SelectedItem="{Binding OrderBox}" Width="200"/>
-            <TextBlock Text="Скидка: "/>
-            <TextBox Text="{Binding Discount}" Width="200"/>
             <TextBlock Text="Цена: "/>
-            <TextBox Text="{Binding Price}" IsReadOnly="True" Width="200"/>
+            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" x:Name="txbx_Price" IsReadOnly="True" Width="200"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Margin="0,10,0,0">
             <Button Command="{Binding AddNewOrderWindow}" Content="Добавить" Width="200" CommandParameter="{Binding ElementName=AddNewOrder}"/>

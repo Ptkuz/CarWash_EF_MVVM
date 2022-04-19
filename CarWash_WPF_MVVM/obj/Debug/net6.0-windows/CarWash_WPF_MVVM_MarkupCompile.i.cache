@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\App.xaml
-7598419631
+8-686602036
 
-15-1725358388
+16182702308
 215-1554301254
-View\AddBox.xaml;View\AddCar.xaml;View\AddCarBody.xaml;View\AddClient.xaml;View\AddOrder.xaml;View\AddService.xaml;View\MainWindow.xaml;
+View\AddBox.xaml;View\AddCar.xaml;View\AddCarBody.xaml;View\AddClient.xaml;View\AddOrder.xaml;View\AddService.xaml;View\MainWindow.xaml;View\ViewServices.xaml;
 
-True
+False
 

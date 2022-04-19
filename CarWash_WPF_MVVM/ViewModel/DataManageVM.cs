@@ -1,17 +1,10 @@
-﻿using CarWash_WPF_MVVM.Model;
+﻿using CarWash_DB;
+using CarWash_WPF_MVVM.Model;
 using CarWash_WPF_MVVM.View;
-using CarWash_DB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Collections.ObjectModel;
-using CarWash_WPF_MVVM.View;
 
 namespace CarWash_WPF_MVVM.ViewModel
 {
@@ -46,13 +39,13 @@ namespace CarWash_WPF_MVVM.ViewModel
         public DateTime EndDate { get; set; }
         public Box OrderBox { get; set; }
         public int Discount { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         public Status Status { get; set; }
 
         // Свойста услуги
         public Guid IdService { get; set; }
         public string NameService { get; set; }
-        public decimal PriceService { get; set; }
+        public int PriceService { get; set; }
 
         // Свойста бокса
         public string NameBox { get; set; }
@@ -60,7 +53,28 @@ namespace CarWash_WPF_MVVM.ViewModel
         // Свойста кузова
         public string NameCarBody { get; set; }
 
-        public DataManageVM() 
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { 
+                SetProperty(ref value);
+                MessageBox.Show("Сработало");
+            }
+        }
+
+        public static Order SelectedOrder { get; set; } = null;
+
+        Dictionary<Guid, int> orderDict = AddOrder.ServicesDict;
+
+        public void SetProperty(ref bool myProperty) 
+        { 
+            IsSelected = myProperty;
+        }
+        
+
+        public DataManageVM()
         {
             updateData = new UpdateData(UpdateAllCarsView);
             updateData += UpdateAllClientsView;
@@ -69,7 +83,7 @@ namespace CarWash_WPF_MVVM.ViewModel
             updateData += UpdateAllCarBodyView;
             updateData += UpdateAllServiceView;
             updateData += SetNullValuesProrepty;
-            
+
 
         }
 
@@ -77,7 +91,7 @@ namespace CarWash_WPF_MVVM.ViewModel
         // Вывод данных
 
         private List<object> allCarsWithOrder = DataWorker.GetAllCarsWithOrder();
-        public List<object> AllCarsWithOrder 
+        public List<object> AllCarsWithOrder
         {
             get { return allCarsWithOrder; }
             set
@@ -89,28 +103,28 @@ namespace CarWash_WPF_MVVM.ViewModel
         }
 
         private List<object> allCars = DataWorker.GetAllCars();
-        public List<object> AllCars 
+        public List<object> AllCars
         {
             get { return allCars; }
-            set 
+            set
             {
                 allCars = value;
                 NotifyPropertyChanged("AllCars");
             }
-        
+
         }
 
         private List<object> allClients = DataWorker.GetAllClients();
-        public List<object> AllClients 
+        public List<object> AllClients
         {
             get { return allClients; }
-            set 
+            set
             {
                 allClients = value;
                 NotifyPropertyChanged("AllClients");
-            
+
             }
-        
+
         }
 
         private List<object> allOrders = DataWorker.GetAllOrders();
@@ -128,16 +142,16 @@ namespace CarWash_WPF_MVVM.ViewModel
 
 
         private List<object> allBoxes = DataWorker.GetAllBoxes();
-        public List<object> AllBoxes 
+        public List<object> AllBoxes
         {
             get { return allBoxes; }
-            set 
+            set
             {
                 allBoxes = value;
                 NotifyPropertyChanged("AllBoxes");
-            
+
             }
-        
+
         }
 
         private List<object> allCarBodies = DataWorker.GetAllCarBody();
@@ -166,60 +180,74 @@ namespace CarWash_WPF_MVVM.ViewModel
 
         }
 
+        private List<object> orderServices = DataWorker.GetOrderServices(SelectedOrder);
+        public List<object> OrderServices 
+        {
+            get { return orderServices; }
+            set { orderServices = value; NotifyPropertyChanged("OrderServices"); }
+        
+        }
+
 
         // Методы открытия окон
-        private void OpenAddCarWindow() 
+        private void OpenAddCarWindow()
         {
             AddCar addCar = new AddCar();
             SetCenterWindowAndOpen(addCar);
 
-        
+
         }
 
-        private void OpenAddClientWindow() 
+        private void OpenAddClientWindow()
         {
             AddClient addClient = new AddClient();
             SetCenterWindowAndOpen(addClient);
         }
 
-        private void OpenAddOrderWindow() 
+        private void OpenAddOrderWindow()
         {
             AddOrder addOrder = new AddOrder();
             SetCenterWindowAndOpen(addOrder);
-        
+
         }
 
-        private void OpenAddBoxWindow() 
+        private void OpenAddBoxWindow()
         {
             AddBox addBox = new AddBox();
             SetCenterWindowAndOpen(addBox);
         }
 
-        private void OpenAddCarBodyWindow() 
+        private void OpenAddCarBodyWindow()
         {
             AddCarBody addCarBody = new AddCarBody();
             SetCenterWindowAndOpen(addCarBody);
         }
 
-        private void OpenAddServiceWindow() 
+        private void OpenAddServiceWindow()
         {
             AddService addService = new AddService();
             SetCenterWindowAndOpen(addService);
         }
+        private void OpenViewServicesWindow() 
+        {
+            ViewServices viewServices = new ViewServices();
+            SetCenterWindowAndOpen(viewServices);
+        
+        }
 
         // Команды открытия окон
         private RelayCommand openAddNewCar;
-        public RelayCommand OpenAddNewCar 
+        public RelayCommand OpenAddNewCar
         {
-            get 
-            { 
+            get
+            {
                 return openAddNewCar ?? new RelayCommand(obj =>
                 {
                     OpenAddCarWindow();
                 });
-                
+
             }
-        
+
         }
 
         private RelayCommand openAddNewClient;
@@ -287,6 +315,20 @@ namespace CarWash_WPF_MVVM.ViewModel
             }
         }
 
+        private RelayCommand openViewService;
+        public RelayCommand OpenViewService 
+        {
+            get 
+            {
+                return openViewService ?? new RelayCommand(obj => 
+                {
+                    OpenViewServicesWindow();
+                });
+            
+            }
+        
+        }
+
 
         // Команды добавления данных
 
@@ -295,7 +337,7 @@ namespace CarWash_WPF_MVVM.ViewModel
         {
             get
             {
-                
+
 
                 return addNewCar ?? new RelayCommand(obj =>
                 {
@@ -303,12 +345,12 @@ namespace CarWash_WPF_MVVM.ViewModel
                     if (DataWorker.AddCar(CarManufacturer, CarModel, CarYear, CarCarBody))
                     {
                         updateData();
-                        
+
                         window.Close();
                         MessageBox.Show("Новый автомобиль успешно добавлен", "Добавление автомобиля", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     }
-                    else 
+                    else
                     {
                         updateData();
                         window.Close();
@@ -361,7 +403,7 @@ namespace CarWash_WPF_MVVM.ViewModel
                 return addNewOrder ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
-                    if (DataWorker.AddOrder(OrderCar, OrderClient, BeginDate, EndDate, OrderBox, Discount, Price))
+                    if (DataWorker.AddOrder(OrderCar, OrderClient, BeginDate, EndDate, OrderBox, Price, ref orderDict))
                     {
                         updateData();
                         window.Close();
@@ -471,16 +513,16 @@ namespace CarWash_WPF_MVVM.ViewModel
             }
         }
 
-        private void SetCenterWindowAndOpen(Window window) 
-        { 
+        private void SetCenterWindowAndOpen(Window window)
+        {
             window.Owner = Application.Current.MainWindow;
             window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             window.ShowDialog();
-        
+
         }
 
 
-        private void UpdateAllCarsView() 
+        private void UpdateAllCarsView()
         {
             AllCars = DataWorker.GetAllCars();
             MainWindow.AllCarsView.ItemsSource = null;
@@ -488,10 +530,10 @@ namespace CarWash_WPF_MVVM.ViewModel
 
             MainWindow.AllCarsView.ItemsSource = AllCars;
             MainWindow.AllCarsView.Items.Refresh();
-        
+
         }
 
-        private void UpdateAllClientsView() 
+        private void UpdateAllClientsView()
         {
             AllClients = DataWorker.GetAllClients();
             MainWindow.AllClientsView.ItemsSource = null;
@@ -502,7 +544,7 @@ namespace CarWash_WPF_MVVM.ViewModel
 
         }
 
-        private void UpdateAllOrdersView() 
+        private void UpdateAllOrdersView()
         {
             AllOrders = DataWorker.GetAllOrders();
             MainWindow.AllOrdersView.ItemsSource = null;
@@ -512,36 +554,36 @@ namespace CarWash_WPF_MVVM.ViewModel
 
         }
 
-        private void UpdateAllBoxView() 
+        private void UpdateAllBoxView()
         {
             AllBoxes = DataWorker.GetAllBoxes();
             MainWindow.AllBoxesView.ItemsSource = null;
             MainWindow.AllBoxesView.Items.Clear();
-            MainWindow.AllBoxesView.ItemsSource= AllBoxes;
+            MainWindow.AllBoxesView.ItemsSource = AllBoxes;
             MainWindow.AllBoxesView.Items.Refresh();
         }
 
-        private void UpdateAllCarBodyView() 
+        private void UpdateAllCarBodyView()
         {
             AllCarBody = DataWorker.GetAllCarBody();
             MainWindow.AllCarBodyView.ItemsSource = null;
             MainWindow.AllCarBodyView.Items.Clear();
             MainWindow.AllCarBodyView.ItemsSource = AllCarBody;
             MainWindow.AllCarBodyView.Items.Refresh();
-        
+
         }
 
-        private void UpdateAllServiceView() 
+        private void UpdateAllServiceView()
         {
             AllServices = DataWorker.GetAllServices();
             MainWindow.AllServicesView.ItemsSource = null;
-             MainWindow.AllServicesView.Items.Clear();
+            MainWindow.AllServicesView.Items.Clear();
             MainWindow.AllServicesView.ItemsSource = AllServices;
             MainWindow.AllServicesView.Items.Refresh();
-        
+
         }
 
-        private void SetNullValuesProrepty() 
+        private void SetNullValuesProrepty()
         {
             CarManufacturer = null;
             CarModel = null;
@@ -566,33 +608,49 @@ namespace CarWash_WPF_MVVM.ViewModel
             PriceService = 0;
 
 
-    }
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private void NotifyPropertyChanged(string properryName) 
-        { 
-            if(PropertyChanged!=null)
+        private void NotifyPropertyChanged(string properryName)
+        {
+            if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(properryName));
-        
+
         }
 
 
-        private void OnChecked(object sender, RoutedEventArgs e)
+
+        private RelayCommand onChecked;
+        public RelayCommand OnChecked
         {
-            try
+            get
             {
-                //var checkBoxValue = AddOrder.DataGridServices.
-                MessageBox.Show("Сработало");
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show(ex.Message, "Автомойка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+
+                return onChecked ?? new RelayCommand(obj =>
+                {
+                    Window window = obj as Window;
+                    if (DataWorker.AddService(NameService, PriceService))
+                    {
+                        updateData();
+                        window.Close();
+                        MessageBox.Show("Новая услуга успешно добавлена", "Добавление услуги", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    }
+                    else
+                    {
+                        updateData();
+                        window.Close();
+                        MessageBox.Show("Произошла ошибка при добавлении услуги", "Добавление услуги", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
+
+                });
 
             }
 
-        
         }
 
         private void UnChecked(object sender, RoutedEventArgs e)

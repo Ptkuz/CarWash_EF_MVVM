@@ -20,6 +20,12 @@
                 <TabItem.Header>
                     <TextBlock Text="Записи"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Список услуг" Command="{Binding OpenViewService}"/>
+                        <MenuItem Header="Изменить статус заказа" Command="{Binding EditStatusService}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <ListView x:Name="ViewAllOrders" ItemsSource="{Binding AllOrders}" SelectedItem="{Binding SelectedOrder}">
                     <ListView.View>
                         <GridView>

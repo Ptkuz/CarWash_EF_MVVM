@@ -132,3 +132,5 @@ C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-w
 C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\View\AddClient.baml
 C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\View\AddOrder.baml
 C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\View\AddService.baml
+C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\View\ViewServices.g.cs
+C:\Users\ptkuz\source\repos\CarWash_WPF_MVVM\CarWash_WPF_MVVM\obj\Debug\net6.0-windows\View\ViewServices.baml

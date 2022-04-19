@@ -1,0 +1,21 @@
+﻿<Window x:Class="CarWash_WPF_MVVM.View.ViewServices"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarWash_WPF_MVVM.View"
+        mc:Ignorable="d"
+        Title="ViewServices" Height="250" Width="400">
+    <Grid>
+
+        <ListView x:Name="ViewAllOrders" ItemsSource="{Binding OrderServices}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название услуги" DisplayMemberBinding="{Binding Path=NameService}"/>
+                    <GridViewColumn Header="Стоимость услуги услуги" DisplayMemberBinding="{Binding Path=PriceService}"/>
+                </GridView>
+                </ListView.View>
+            </ListView>
+
+    </Grid>
+</Window>
